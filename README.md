@@ -15,7 +15,7 @@
 ## 閲覧
 
 以下のURLから閲覧できます。  
-[]()
+[https://l-shikiori.github.io/collection_of_weapons_nw-new/](https://l-shikiori.github.io/collection_of_weapons_nw-new/)
 
 ## ライセンス
 
