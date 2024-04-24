@@ -19,7 +19,7 @@
 
 ## ライセンス
 
-[MIT](https://github.com/takenocotoon/collection_of_weapons_nw/blob/main/LICENSE)
+[MIT](https://github.com/L-Shikiori/collection_of_weapons_nw-new/blob/main/LICENSE)
 
 ## 作者
 
