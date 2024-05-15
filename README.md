@@ -26,3 +26,7 @@
 [GungeeSpla](https://github.com/GungeeSpla) ([Twitter](https://twitter.com/GungeeSpla))
 
 [takenocotoon](https://github.com/takenocotoon) ([Twitter](https://twitter.com/takenocotoon))
+
+## 留意点
+
+このウェブサイトは任天堂とは関係ありません。 すべての製品名、ロゴ、ブランドはそれぞれの所有者の財産です。
