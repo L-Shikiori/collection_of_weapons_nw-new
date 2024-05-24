@@ -41,7 +41,7 @@
 	const stackLengthMax = 100;
 
 	/** ブキタイプ配列 */
-	// const weaponsTypes = ['shooters', 'blasters', 'rollers', 'chargers', 'sloshers', 'splatlings', 'dualies', 'brellas', 'grizzcos'];
+	// const weaponsTypes = ['shooters', 'blasters', 'rollers', 'chargers', 'sloshers', 'splatlings', 'dualies', 'brellas', 'stringers', 'wipers', 'grizzcos'];
 	/** ブキデータ */
 	const weapons = {
 		0: { ja: 'わかばシューター', en: 'Splattershot Jr.', type: 'shooter', bottom: 39 },
