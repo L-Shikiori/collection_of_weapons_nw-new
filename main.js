@@ -145,7 +145,7 @@
 	let isComplete = false;
 
 	/** クマブキオプション */
-	let grizzcoVisibleOption = 20040;
+	let grizzcoVisibleOption = 21000;
 
 	/** 増加オプション */
 	let increaseOption = true;
