@@ -231,6 +231,7 @@
 		return true;
 	};
 
+
 	/** clear()
 	 * データを消去する。
 	 */
@@ -364,6 +365,8 @@
 			});
 		}
 	};
+
+	
 
 
 	/** toggleCounter()
@@ -505,6 +508,34 @@
 		}
 	};
 
+	// 残り武器数の計算
+	const checkRemainingWeapons = () => {
+		const remainingWeapons = {};
+		let totalRemaining = 0;
+	
+		Object.keys(weapons).forEach(id => {
+			const numId = parseInt(id, 10);
+			if (numId < 20000 || (grizzcoVisibleOption >= 21000 && numId >= 20000 && numId < 21000)) {
+				const remaining = Math.max(0, 1 - (counts[numId] || 0));
+				if (remaining > 0) {
+					remainingWeapons[numId] = remaining;
+					totalRemaining += remaining;
+				}
+			}
+		});
+	
+		if (grizzcoVisibleOption < 21000 && weapons[grizzcoVisibleOption]) {
+			const remaining = Math.max(0, 1 - (counts[grizzcoVisibleOption] || 0));
+			if (remaining > 0) {
+				remainingWeapons[grizzcoVisibleOption] = remaining;
+				totalRemaining += remaining;
+			}
+		}
+	
+		return { remainingWeapons, totalRemaining };
+	};
+
+	// 統計
 	const collectStatistics = () => {
 		const wrapper = document.getElementById('statistics-wrapper');
 		wrapper.style.setProperty('display', 'block');
@@ -545,6 +576,31 @@
 				html += '</tr>';
 			}
 		}
+		
+		// 残り武器数の計算と表示を追加
+		const { remainingWeapons, totalRemaining } = checkRemainingWeapons();
+			
+		// 残り武器数の合計を表示
+		html += '<tr><td colspan="3"><strong>残り武器数の合計: ' + totalRemaining + '</strong></td></tr>';
+			
+		
+		// 残りの武器リストを表示
+		if (totalRemaining > 0) {
+    		html += '<tr><td colspan="3"><strong>未獲得の武器:</strong></td></tr>';
+    		Object.entries(remainingWeapons).forEach(([weaponId, count]) => {
+        		const weaponData = weapons[weaponId];
+        		if (weaponData) {
+            		const src = `${weaponsDirectory + weaponId}.png?0`;
+            		html += '<tr>';
+            		html += `<td><img src="${src}">${weaponData[lang]}</td>`;
+            		html += `<td colspan="2"></td>`; // 空のセルを追加して列を揃える
+            		html += '</tr>';
+        		} else {
+            	console.warn(`武器データが見つかりません: ID ${weaponId}`);
+        		}
+    		});
+		}
+		
 		const statisticsTable = document.getElementById('statistics-table');
 		statisticsTable.innerHTML = html;
 		const totalCountSpan = document.getElementById('total-count');
@@ -559,6 +615,10 @@
 			});
 		}
 	};
+	
+	
+	
+	
 	// window操作
 	window.addEventListener('resize', resizeWeapons);
 	window.addEventListener('DOMContentLoaded', init);
