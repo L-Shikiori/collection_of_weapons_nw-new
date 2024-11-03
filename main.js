@@ -44,6 +44,7 @@
 	// const weaponsTypes = ['shooters', 'blasters', 'rollers', 'chargers', 'sloshers', 'splatlings', 'dualies', 'brellas', 'stringers',  'wipers', 'grizzcos'];
 	/** ブキデータ */
 	const weapons = {
+		// シューター
 		0: { ja: 'わかばシューター', en: 'Splattershot Jr.', type: 'shooter', bottom: 39 },
 		10: { ja: 'スプラシューター', en: 'Splattershot Jr.', type: 'shooter', bottom: 32 },
 		20: { ja: 'ボールドマーカー', en: 'Sploosh-o-matic', type: 'shooter', bottom: 45 },
@@ -57,9 +58,8 @@
 		100: { ja: 'L3リールガン', en: 'L-3 Nozzlenose', type: 'shooter', bottom: 35 },
 		110: { ja: 'H3リールガン', en: 'H-3 Nozzlenose', type: 'shooter', bottom: 42 },
 		120: { ja: 'ボトルガイザー', en: 'Squeezer', type: 'shooter', bottom: 41 },
-
 		150: { ja: 'スペースシューター', en: 'Splattershot Nova', type: 'shooter', bottom: 44 },
-
+		// ブラスター
 		1000: { ja: 'ノヴァブラスター', en: 'Luna Blaster', type: 'blaster', bottom: 19 },
 		1010: { ja: 'ホットブラスター', en: 'Blaster', type: 'blaster', bottom: 46 },
 		1020: { ja: 'ロングブラスター', en: 'Range Blaster', type: 'blaster', bottom: 50 },
@@ -67,58 +67,58 @@
 		1040: { ja: 'ラピッドブラスター', en: 'Rapid Blaster', type: 'blaster', bottom: 32 },
 		1050: { ja: 'Rブラスターエリート', en: 'Rapid Blaster Pro', type: 'blaster', bottom: 42 },
 		1060: { ja: 'S-BLAST92', en: "S-BLAST '92", type: 'blaster', bottom: 47 },
-
+		// ローラー
 		2000: { ja: 'カーボンローラー', en: 'Carbon Roller', type: 'roller', bottom: 15 },
 		2010: { ja: 'スプラローラー', en: 'Splat Roller', type: 'roller', bottom: 19 },
 		2020: { ja: 'ヴァリアブルローラー', en: 'Flingza Roller', type: 'roller', bottom: 15 },
 		2030: { ja: 'ダイナモローラー', en: 'Dynamo Roller', type: 'roller', bottom: 4 },
 		2040: { ja: 'ワイドローラー', en: 'Big Swig Roller', type: 'roller', bottom: 21 },
-
+		// フデ
 		3000: { ja: 'パブロ', en: 'Inkbrush', type: 'roller', bottom: 4 },
 		3010: { ja: 'ホクサイ', en: 'Octobrush', type: 'roller', bottom: 2 },
 		3020: { ja: 'フィンセント', en: 'Painbrush', type: 'roller', bottom: 2 },
-
+		// チャージャー
 		4000: { ja: 'スクイックリンα', en: 'Classic Squiffer', type: 'charger', bottom: 58 },
 		4010: { ja: 'スプラチャージャー', en: 'Splat Charger', type: 'charger', bottom: 64 },
 		4030: { ja: 'リッター4K', en: 'E-liter 4K', type: 'charger', bottom: 65 },
 		4050: { ja: 'ソイチューバー', en: 'Goo Tuber', type: 'charger', bottom: 33 },
 		4060: { ja: '14式竹筒銃・甲', en: 'Bamboozler 14 Mk I', type: 'charger', bottom: 47 },
 		4070: { ja: 'R-PEN/5H', en: 'Snipewriter 5H', type: 'charger', bottom: 64 },
-
+		// スロッシャー
 		5000: { ja: 'バケットスロッシャー', en: 'Slosher', type: 'slosher', bottom: 6 },
 		5010: { ja: 'ヒッセン', en: 'Tri-Slosher', type: 'slosher', bottom: 6 },
 		5020: { ja: 'スクリュースロッシャー', en: 'Sloshing Machine', type: 'slosher', bottom: 11 },
 		5030: { ja: 'オーバーフロッシャー', en: 'Bloblobber', type: 'slosher', bottom: 28 },
 		5040: { ja: 'エクスプロッシャー', en: 'Explosher', type: 'slosher', bottom: 22 },
 		5050: { ja: "モップリン", en: "Dread Wringer", type: "slosher", bottom: 19 },
-
+		// スピナー
 		6000: { ja: 'スプラスピナー', en: 'Mini Splatling', type: 'splatling', bottom: 43 },
 		6010: { ja: 'バレルスピナー', en: 'Heavy Splatling', type: 'splatling', bottom: 42 },
 		6020: { ja: 'ハイドラント', en: 'Hydra Splatling', type: 'splatling', bottom: 27 },
 		6030: { ja: 'クーゲルシュライバー', en: 'Ballpoint Splatling', type: 'splatling', bottom: 51 },
 		6040: { ja: 'ノーチラス47', en: 'Nautilus 47', type: 'splatling', bottom: 42 },
 		6050: { ja: "イグザミナー", en: "Heavy Edit Splatling", type: "splatling", bottom: 47 },
-
+		// マニューバー
 		7000: { ja: 'スパッタリー', en: 'Dapple Dualies', type: 'dualies', bottom: 22 },
 		7010: { ja: 'スプラマニューバー', en: 'Splat Dualies', type: 'dualies', bottom: 7 },
 		7020: { ja: 'デュアルスイーパー', en: 'Dualie Squelchers', type: 'dualies', bottom: 30 },
 		7030: { ja: 'ケルビン525', en: 'Glooga Dualies', type: 'dualies', bottom: 15 },
 		7040: { ja: 'クアッドホッパーブラック', en: 'Dark Tetra Dualies', type: 'dualies', bottom: 7 },
 		7050: { ja: 'ガエンFF', en: 'Douser Dualies FF', type: 'dualies', bottom: 7 },
-
+		// シェルター
 		8000: { ja: 'パラシェルター', en: 'Splat Brella', type: 'brella', bottom: 32 },
 		8010: { ja: 'キャンピングシェルター', en: 'Tenta Brella', type: 'brella', bottom: 4 },
 		8020: { ja: 'スパイガジェット', en: 'Undercover Brella', type: 'brella', bottom: 27 },
 		8030: { ja: '24式張替傘・甲', en: 'Recycled Brella 24 Mk I', type: 'brella', bottom: 27 },
-
+		// ストリンガー
 		9000: { ja: 'トライストリンガー', en: 'Tri-Stringer', type: 'stringer', bottom: 1 },
 		9010: { ja: 'LACT-450', en: 'REEF-LUX 450', type: 'stringer', bottom: 15 },
 		9020: { ja: 'フルイドV', en: 'Wellstring V', type: 'stringer', bottom: 2 },
-
+		// ワイパー
 		10000: { ja: 'ジムワイパー', en: 'Splatana Stamper', type: 'wiper', bottom: 4 },
 		10010: { ja: 'ドライブワイパー', en: 'Splatana Wiper', type: 'wiper', bottom: 5 },
 		10020: { ja: 'デンタルワイパーミント', en: 'Mint Decavitator', type: 'wiper', bottom: 1 },
-
+		// クマ武器
 		20000: { ja: 'クマサン印のブラスター', en: 'Grizzco Blaster', type: 'grizzco', bottom: 55 },
 		20010: { ja: 'クマサン印のシェルター', en: 'Grizzco Brella', type: 'grizzco', bottom: 42 },
 		20020: { ja: 'クマサン印のチャージャー', en: 'Grizzco Charger', type: 'grizzco', bottom: 45 },
@@ -552,6 +552,15 @@
 			ja: '閉じる',
 			en: 'Close',
 		};
+		// 残り武器系の翻訳を追加
+		const remainingWeaponsLang = {
+			ja: '残り武器数の合計',
+			en: 'Total remaining weapons',
+		};
+		const unacquiredWeaponsLang = {
+			ja: '未獲得の武器',
+			en: 'Unacquired weapons',
+		};
 		const array = [];
 		let totalCount = 0;
 		Object.keys(counts).forEach((id) => {
@@ -576,31 +585,25 @@
 				html += '</tr>';
 			}
 		}
-		
 		// 残り武器数の計算と表示を追加
 		const { remainingWeapons, totalRemaining } = checkRemainingWeapons();
-			
 		// 残り武器数の合計を表示
-		html += '<tr><td colspan="3"><strong>残り武器数の合計: ' + totalRemaining + '</strong></td></tr>';
-			
-		
+		html += `<tr><td colspan="3"><strong>${remainingWeaponsLang[lang]}: ${totalRemaining}</strong></td></tr>`;
 		// 残りの武器リストを表示
 		if (totalRemaining > 0) {
-    		html += '<tr><td colspan="3"><strong>未獲得の武器:</strong></td></tr>';
-    		Object.entries(remainingWeapons).forEach(([weaponId, count]) => {
-        		const weaponData = weapons[weaponId];
-        		if (weaponData) {
-            		const src = `${weaponsDirectory + weaponId}.png?0`;
-            		html += '<tr>';
-            		html += `<td><img src="${src}">${weaponData[lang]}</td>`;
-            		html += `<td colspan="2"></td>`; // 空のセルを追加して列を揃える
-            		html += '</tr>';
-        		} else {
-            	console.warn(`武器データが見つかりません: ID ${weaponId}`);
-        		}
-    		});
+			html += `<tr><td colspan="3"><strong>${unacquiredWeaponsLang[lang]}:</strong></td></tr>`;
+			Object.entries(remainingWeapons).forEach(([weaponId, count]) => {
+				const weaponData = weapons[weaponId];
+				if (weaponData) {
+					const src = `${weaponsDirectory + weaponId}.png?0`;
+					html += '<tr>';
+					html += `<td><img src="${src}">${weaponData[lang]}</td>`;
+					html += '</tr>';
+				} else {
+					console.warn(`Weapon data not found: ID ${weaponId}`);
+				}
+			});
 		}
-		
 		const statisticsTable = document.getElementById('statistics-table');
 		statisticsTable.innerHTML = html;
 		const totalCountSpan = document.getElementById('total-count');
@@ -615,9 +618,6 @@
 			});
 		}
 	};
-	
-	
-	
 	
 	// window操作
 	window.addEventListener('resize', resizeWeapons);
