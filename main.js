@@ -34,6 +34,39 @@
 	/** 画像ファイルが置いてあるディレクトリの場所 */
 	const weaponsDirectory = 'weapon/';
 
+	/**拡張子 */
+	// AVIFサポートの検出関数
+	const supportsAvif = () => {
+		const canvas = document.createElement('canvas');
+		return canvas.toDataURL('image/avif').indexOf('data:image/avif') === 0;
+	};
+	// WebPサポートの検出関数
+	const supportsWebP = () => {
+		const canvas = document.createElement('canvas');
+		return canvas.toDataURL('image/webp').indexOf('data:image/webp') === 0;
+	};
+	// 画像読み込み関数
+	const loadImage = (id, directory) => {
+		const avifSupported = supportsAvif();
+		const webpSupported = supportsWebP();
+		const avifSrc = `${directory}avif/${id}.avif?0`;
+		const webpSrc = `${directory}webp/${id}.webp?0`;
+		const pngSrc = `${directory}png/${id}.png?0`;
+	
+		return new Promise((resolve) => {
+			const img = new Image();
+			img.onload = () => resolve(img.src);
+			img.onerror = () => {
+			if (img.src === avifSrc && webpSupported) {
+				img.src = webpSrc;
+			} else if (img.src === webpSrc || !webpSupported) {
+				img.src = pngSrc;
+			}
+			};
+			img.src = avifSupported ? avifSrc : (webpSupported ? webpSrc : pngSrc);
+		});
+	};
+
 	/** ブキのデフォルト画像サイズ */
 	const defaultWeaponSize = 180;
 
@@ -460,10 +493,47 @@
 			increaseOption = !!parseInt(increaseSelectElm.value, 10);
 			save();
 		});
-		// ボタンを追加する
+
+		
+		  // ボタンを追加する
+		  const wrapperElm = document.getElementById('weapons-wrapper');
+		  weaponIds.forEach((id) => {
+			const weaponElm = document.createElement('div');
+			weaponElm.setAttribute('title', `${weapons[id][lang]}`);
+			weaponElm.setAttribute('id', `weapon-${id}`);
+			weaponElm.classList.add('weapon-container');
+			if (id >= 20000) {
+			  weaponElm.classList.add('grizzco-weapon-container');
+			}
+			const countElm = document.createElement('div');
+			countElm.classList.add('weapon-count');
+			countElm.setAttribute('weapon-id', id);
+			countElm.setAttribute('id', `weapon-count-${id}`);
+			countElm.addEventListener(EVENT_CLICK, countminus);
+			const imageElm = document.createElement('div');
+			imageElm.classList.add('weapon-image');
+			imageElm.setAttribute('weapon-id', id);
+			imageElm.setAttribute('id', `weapon-image-${id}`);
+			imageElm.addEventListener(EVENT_CLICK, count);
+		
+			// 画像の読み込みと設定
+			loadImage(id, weaponsDirectory)
+			  .then(src => {
+				imageElm.style.setProperty('background-image', `url(${src})`);
+			  })
+			  .catch(error => {
+				console.error('Image load failed:', error);
+			  });
+		
+			weaponElm.appendChild(imageElm);
+			weaponElm.appendChild(countElm);
+			wrapperElm.appendChild(weaponElm);
+			update(id, true);
+		
+		/*// ボタンを追加する
 		const wrapperElm = document.getElementById('weapons-wrapper');
 		weaponIds.forEach((id) => {
-			const src = `${weaponsDirectory + id}.png?0`;
+			const src = `${weaponsDirectory + id}.avif?0`;
 			const weaponElm = document.createElement('div');
 			weaponElm.setAttribute('title', `${weapons[id][lang]}`);
 			weaponElm.setAttribute('id', `weapon-${id}`);
@@ -489,11 +559,12 @@
 			imageElm.addEventListener('mousedown', (e) => {
 				console.log(e.timeStamp);
 			});
-			*/
+			
 			weaponElm.appendChild(imageElm);
 			weaponElm.appendChild(countElm);
 			wrapperElm.appendChild(weaponElm);
 			update(id, true);
+			*/
 		});
 		// ブキリサイズ
 		resizeWeapons();
@@ -535,89 +606,98 @@
 		return { remainingWeapons, totalRemaining };
 	};
 
-	// 統計
-	const collectStatistics = () => {
-		const wrapper = document.getElementById('statistics-wrapper');
-		wrapper.style.setProperty('display', 'block');
-		document.body.style.setProperty('overflow', 'hidden');
-		const totalCountLang = {
-			ja: 'ブキを支給された回数の合計',
-			en: 'Total number of times weapons were provided',
-		};
-		const headerLang = {
-			ja: '<tr><td>ブキ</td><td>回数</td><td>割合</td></tr>',
-			en: '<tr><td>WEAPON</td><td>TIMES</td><td>RATIO</td></tr>',
-		};
-		const closeLang = {
-			ja: '閉じる',
-			en: 'Close',
-		};
-		// 残り武器系の翻訳を追加
-		const remainingWeaponsLang = {
-			ja: '残り武器数の合計',
-			en: 'Total remaining weapons',
-		};
-		const unacquiredWeaponsLang = {
-			ja: '未獲得の武器',
-			en: 'Unacquired weapons',
-		};
-		const array = [];
-		let totalCount = 0;
-		Object.keys(counts).forEach((id) => {
-			array.push({
-				id: id,
-				count: counts[id],
-			});
-			totalCount += counts[id];
+// 統計
+const collectStatistics = () => {
+	const wrapper = document.getElementById('statistics-wrapper');
+	wrapper.style.setProperty('display', 'block');
+	document.body.style.setProperty('overflow', 'hidden');
+	const totalCountLang = {
+	  ja: 'ブキを支給された回数の合計',
+	  en: 'Total number of times weapons were provided',
+	};
+	const headerLang = {
+	  ja: '<tr><td>ブキ</td><td>回数</td><td>割合</td></tr>',
+	  en: '<tr><td>WEAPON</td><td>TIMES</td><td>RATIO</td></tr>',
+	};
+	const closeLang = {
+	  ja: '閉じる',
+	  en: 'Close',
+	};
+	const remainingWeaponsLang = {
+	  ja: '残り武器数の合計',
+	  en: 'Total remaining weapons',
+	};
+	const unacquiredWeaponsLang = {
+	  ja: '未獲得の武器',
+	  en: 'Unacquired weapons',
+	};
+	const array = [];
+	let totalCount = 0;
+	Object.keys(counts).forEach((id) => {
+	  array.push({
+		id: id,
+		count: counts[id],
+	});
+	  totalCount += counts[id];
+	});
+	array.sort((a, b) => {
+	  return (a.count > b.count) ? -1 : 1;
+	});
+	let html = headerLang[lang];
+	
+	const addWeaponRow = (id, count, total) => {
+	  return loadImage(id, weaponsDirectory)
+		.then(src => {
+		  return `<tr>
+			<td><img src="${src}">${weapons[id][lang]}</td>
+			<td>${count}</td>
+			<td>${(100 * count / total).toFixed(1)} %</td>
+		  </tr>`;
 		});
-		array.sort((a, b) => {
-			return (a.count > b.count) ? -1 : 1;
-		});
-		let html = headerLang[lang];
-		for (let i = 0; i < array.length; i += 1) {
-			if (array[i].count > 0) {
-				console.log(array[i]);
-				const src = `${weaponsDirectory + array[i].id}.png?0`;
-				html += '<tr>';
-				html += `<td><img src="${src}">${weapons[array[i].id][lang]}</td>`;
-				html += `<td>${array[i].count}</td>`;
-				html += `<td>${(100 * array[i].count / totalCount).toFixed(1)} %</td>`;
-				html += '</tr>';
-			}
-		}
-		// 残り武器数の計算と表示を追加
+	};
+  
+	const weaponPromises = array
+	  .filter(item => item.count > 0)
+	  .map(item => addWeaponRow(item.id, item.count, totalCount));
+  
+	Promise.all(weaponPromises)
+	  .then(rows => {
+		html += rows.join('');
+  
 		const { remainingWeapons, totalRemaining } = checkRemainingWeapons();
-		// 残り武器数の合計を表示
 		html += `<tr><td colspan="3"><strong>${remainingWeaponsLang[lang]}: ${totalRemaining}</strong></td></tr>`;
-		// 残りの武器リストを表示
+  
 		if (totalRemaining > 0) {
-			html += `<tr><td colspan="3"><strong>${unacquiredWeaponsLang[lang]}:</strong></td></tr>`;
-			Object.entries(remainingWeapons).forEach(([weaponId, count]) => {
-				const weaponData = weapons[weaponId];
-				if (weaponData) {
-					const src = `${weaponsDirectory + weaponId}.png?0`;
-					html += '<tr>';
-					html += `<td><img src="${src}">${weaponData[lang]}</td>`;
-					html += '</tr>';
-				} else {
-					console.warn(`Weapon data not found: ID ${weaponId}`);
-				}
-			});
+		  html += `<tr><td colspan="3"><strong>${unacquiredWeaponsLang[lang]}:</strong></td></tr>`;
+		  const remainingPromises = Object.keys(remainingWeapons).map(id => 
+			loadImage(id, weaponsDirectory)
+			  .then(src => `<tr><td><img src="${src}">${weapons[id][lang]}</td></tr>`)
+		  );
+  
+		  return Promise.all(remainingPromises).then(remainingRows => {
+			html += remainingRows.join('');
+			return html;
+		  });
 		}
+		return html;
+	  })
+	  .then(finalHtml => {
 		const statisticsTable = document.getElementById('statistics-table');
-		statisticsTable.innerHTML = html;
+		statisticsTable.innerHTML = finalHtml;
 		const totalCountSpan = document.getElementById('total-count');
 		totalCountSpan.textContent = `${totalCountLang[lang]}: ${totalCount}`;
 		const closeSpan = document.getElementById('statistics-close');
 		closeSpan.textContent = `${closeLang[lang]}`;
 		if (!closeSpan.isSetEvent) {
-			closeSpan.isSetEvent = true;
-			closeSpan.addEventListener(EVENT_CLICK, () => {
-				document.body.style.setProperty('overflow', 'auto');
-				wrapper.style.setProperty('display', 'none');
-			});
+		  closeSpan.isSetEvent = true;
+		  closeSpan.addEventListener(EVENT_CLICK, () => {
+			document.body.style.setProperty('overflow', 'auto');
+			wrapper.style.setProperty('display', 'none');
+		  });
 		}
-	};
+	  });
+    };
+  
 	
 	// window操作
 	window.addEventListener('resize', resizeWeapons);
