@@ -23,9 +23,14 @@
 
 ## 作者
 
-[GungeeSpla](https://github.com/GungeeSpla) ([Twitter](https://twitter.com/GungeeSpla))
+スプラトゥーン2 Salmon Run版ブキコレクション
+[GungeeSpla](https://github.com/GungeeSpla) ([X,旧Twitter](https://twitter.com/GungeeSpla))
 
-[takenocotoon](https://github.com/takenocotoon) ([Twitter](https://twitter.com/takenocotoon))
+スプラトゥーン3 Salmon Run Next Wave版ブキコレクション
+[takenocotoon](https://github.com/takenocotoon) ([X,旧Twitter](https://twitter.com/takenocotoon))
+
+新規武器追加版
+[L-Shikiori](https://github.com/L-Shikiori) ([X,旧Twitter](https://x.com/12FpLimit_y))
 
 ## 
 

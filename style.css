@@ -195,7 +195,7 @@ select {
     left: 5%;
     width: 100%;
     height: 100%;
-    background-image: url('weapon/shadow.png');
+    background-image: url('weapon/png/shadow.png');
     background-size: 90%;
     background-repeat: no-repeat;
 }
