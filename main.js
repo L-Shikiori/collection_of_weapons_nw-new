@@ -79,7 +79,7 @@
 	const weapons = {
 		// シューター
 		0: { ja: 'わかばシューター', en: 'Splattershot Jr.', type: 'shooter', bottom: 39 },
-		10: { ja: 'スプラシューター', en: 'Splattershot Jr.', type: 'shooter', bottom: 32 },
+		10: { ja: 'スプラシューター', en: 'Splattershot.', type: 'shooter', bottom: 32 },
 		20: { ja: 'ボールドマーカー', en: 'Sploosh-o-matic', type: 'shooter', bottom: 45 },
 		30: { ja: 'シャープマーカー', en: 'Splash-o-matic', type: 'shooter', bottom: 39 },
 		40: { ja: 'プロモデラーMG', en: 'Aerospray MG', type: 'shooter', bottom: 24 },
@@ -184,7 +184,7 @@
 	let increaseOption = true;
 
 	/** ローカルストレージのキー */
-	const storageKey = 'collection-of-weapons';
+	const storageKey = 'collection-of-weapons-new';
 
 	/** テーマ */
 	let themeOption = 'light';
